@@ -14,6 +14,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -27,6 +28,7 @@ import com.example.translator.android.translate.presentation.components.SwapLang
 import com.example.translator.android.translate.presentation.components.TranslateHistoryItem
 import com.example.translator.android.translate.presentation.components.TranslateTextField
 import com.example.translator.android.translate.presentation.components.rememberTextToSpeech
+import com.example.translator.translate.domain.translate.TranslateError
 import com.example.translator.translate.presentation.TranslateEvent
 import com.example.translator.translate.presentation.TranslateState
 import java.util.Locale
@@ -38,6 +40,22 @@ fun TranslateScreen(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+
+    LaunchedEffect(
+        state.error
+    ) {
+        val message = when (state.error) {
+            TranslateError.SERVICE_UNAVAILABLE -> context.getString(R.string.error_service_unavailable)
+            TranslateError.CLIENT_ERROR -> context.getString(R.string.error_client)
+            TranslateError.SERVER_ERROR -> context.getString(R.string.error_server)
+            TranslateError.UNKNOWN_ERROR -> context.getString(R.string.error_unknown)
+            else -> null
+        }
+        message?.let {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            onEvent(TranslateEvent.OnErrorSeen)
+        }
+    }
     Scaffold(
     ) { innerPadding ->
         LazyColumn(
