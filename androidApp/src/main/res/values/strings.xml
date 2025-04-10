@@ -15,4 +15,10 @@
     <string name="error_unknown">Unknown error happened.</string>
     <string name="record_audio">Record audio</string>
     <string name="recognition_is_not_available">Recognition is not available</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="apply">Apply</string>
+    <string name="record_again">Record Again</string>
+    <string name="listening">Listening...</string>
+    <string name="start_talking">Click record and start talking</string>
+    <string name="error">Error</string>
 </resources>
