@@ -154,6 +154,7 @@ fun VoiceToTextScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
+                .padding(vertical = 16.dp),
         ) {
             Box(modifier = Modifier.fillMaxWidth()) {
                 IconButton(

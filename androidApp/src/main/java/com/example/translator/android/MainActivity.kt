@@ -106,7 +106,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Text("Hello, Android!")
             TranslatorTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
